@@ -32,7 +32,7 @@ class TfLiteDiseaseClassifier(
         try {
             classifier = ImageClassifier.createFromFileAndOptions(
                 context,
-                "landmarks.tflite",
+                "disease_classifier.tflite",
                 options
             )
         } catch (e: IllegalStateException) {
@@ -58,7 +58,7 @@ class TfLiteDiseaseClassifier(
             classications.categories.map { category ->
                 Classification(
                     name = category.displayName,
-                    confidence = category.score
+                    score = category.score
                 )
             }
         }?.distinctBy { it.name } ?: emptyList()

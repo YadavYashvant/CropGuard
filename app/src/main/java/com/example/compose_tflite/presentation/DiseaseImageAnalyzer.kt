@@ -18,7 +18,7 @@ class DiseaseImageAnalyzer(
             val rotationDegrees = image.imageInfo.rotationDegrees
             val bitmap = image
                 .toBitmap()
-                .centerCrop(321, 321)
+                .centerCrop(300, 300)
 
             val results = classifier.classify(bitmap, rotationDegrees)
             onResults(results)

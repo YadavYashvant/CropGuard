@@ -21,9 +21,14 @@ import androidx.camera.view.LifecycleCameraController
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.material3.Card
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.getValue
@@ -42,6 +47,12 @@ import com.example.compose_tflite.presentation.DiseaseImageAnalyzer
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        window.setFlags(
+            android.view.WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+            android.view.WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+        )
+
         super.onCreate(savedInstanceState)
 
         if(!hasCameraPermission()) {
@@ -81,26 +92,40 @@ class MainActivity : ComponentActivity() {
                             )
                         }
                     }
-                    Box(
+                    Column(
                         modifier = Modifier
                             .fillMaxSize()
+                            .padding(top = 32.dp),
                     ) {
-                        CameraPreview(controller, Modifier.fillMaxSize())
 
-                        Column(
+                        Card(
                             modifier = Modifier
+                                .padding(horizontal = 16.dp, vertical = 32.dp),
+                        ) {
+                            CameraPreview(controller, modifier = Modifier
                                 .fillMaxWidth()
-                                .align(Alignment.TopCenter)
+                                .height(500.dp)
+                            )
+                        }
+
+                        Card(
+                            modifier = Modifier
+                                .padding(horizontal = 16.dp, vertical = 32.dp)
+                                .height(150.dp)
+                            ,
+
                         ) {
                             classifications.forEach {
                                 Text(
                                     text = it.name,
                                     modifier = Modifier
-                                        .fillMaxWidth()
+                                        .fillMaxSize()
                                         .background(MaterialTheme.colorScheme.primaryContainer)
-                                        .padding(8.dp),
+                                        .padding(8.dp)
+                                    ,
                                     textAlign = TextAlign.Center,
-                                    fontSize = 20.sp,
+                                    fontSize = 36.sp,
+
                                     color = MaterialTheme.colorScheme.primary
                                 )
                             }
