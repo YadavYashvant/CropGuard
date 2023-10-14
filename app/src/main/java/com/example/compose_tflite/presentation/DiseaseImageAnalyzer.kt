@@ -14,7 +14,7 @@ class DiseaseImageAnalyzer(
     private var frameSkipCounter = 0
 
     override fun analyze(image: ImageProxy) {
-        if(frameSkipCounter % 60 == 0) {
+        if(frameSkipCounter % 30 == 0) {
             val rotationDegrees = image.imageInfo.rotationDegrees
             val bitmap = image
                 .toBitmap()
