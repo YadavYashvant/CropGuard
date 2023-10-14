@@ -11,7 +11,7 @@ import org.tensorflow.lite.task.core.BaseOptions
 import org.tensorflow.lite.task.core.vision.ImageProcessingOptions
 import org.tensorflow.lite.task.vision.classifier.ImageClassifier
 
-class TfLiteLandmarkClassifier(
+class TfLiteDiseaseClassifier(
     private val context: Context,
     private val threshold: Float = 0.5f,
     private val maxResults: Int = 3

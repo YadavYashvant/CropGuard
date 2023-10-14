@@ -6,7 +6,7 @@ import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
 import com.example.compose_tflite.domain.Classification
 
-class LandmarkImageAnalyzer(
+class DiseaseImageAnalyzer(
     private val classifier: DiseaseClassifier,
     private val onResults: (List<Classification>) -> Unit
 ): ImageAnalysis.Analyzer {
