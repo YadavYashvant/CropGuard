@@ -14,6 +14,7 @@ import androidx.core.app.ActivityCompat
 import com.example.compose_tflite.ui.theme.ComposetfliteTheme
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import androidx.activity.compose.setContent
 import androidx.camera.view.CameraController
@@ -28,7 +29,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Card
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedCard
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.getValue
@@ -43,8 +46,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
+import androidx.navigation.compose.rememberNavController
 import com.example.compose_tflite.data.TfLiteDiseaseClassifier
 import com.example.compose_tflite.domain.Classification
+import com.example.compose_tflite.presentation.BottomNavigation
 import com.example.compose_tflite.presentation.CameraPreview
 import com.example.compose_tflite.presentation.DiseaseImageAnalyzer
 
@@ -57,6 +62,8 @@ val spacefamily = FontFamily(
 )
 
 class MainActivity : ComponentActivity() {
+    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
 
         window.setFlags(
@@ -103,56 +110,69 @@ class MainActivity : ComponentActivity() {
                             )
                         }
                     }
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(top = 32.dp),
+
+                    val navController = rememberNavController()
+
+                    Scaffold(
+                        modifier = Modifier.fillMaxSize(),
+
+                        bottomBar = {
+                            BottomNavigation(navController = navController)
+                        }
                     ) {
 
-                        Text(text = "Plant Disease Detector",
+                        Column(
                             modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(horizontal = 16.dp)
-                                .wrapContentSize(Alignment.Center),
-                            fontFamily = spacefamily,
-                            fontWeight = FontWeight.Bold,
-                            textAlign = TextAlign.Center,
-                            fontSize = 30.sp,
-                        )
-
-                        Card(
-                            modifier = Modifier
-                                .padding(horizontal = 16.dp, vertical = 32.dp),
+                                .fillMaxSize()
+                                .padding(top = 32.dp),
                         ) {
-                            CameraPreview(controller, modifier = Modifier
-                                .fillMaxWidth()
-                                .height(550.dp)
+
+                            Text(text = "Plant Disease Detector",
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(horizontal = 16.dp)
+                                    .wrapContentSize(Alignment.Center),
+                                fontFamily = spacefamily,
+                                fontWeight = FontWeight.Bold,
+                                textAlign = TextAlign.Center,
+                                fontSize = 30.sp,
                             )
-                        }
 
-                        Card(
-                            modifier = Modifier
-                                .padding(horizontal = 16.dp, vertical = 20.dp)
-                                .height(100.dp)
-                            ,
-
-                        ) {
-                            classifications.forEach {
-                                Text(
-                                    text = it.name,
-                                    modifier = Modifier
-                                        .fillMaxSize()
-                                        .padding(8.dp)
-                                    ,
-                                    fontFamily = nothingfontfamily,
-                                    fontWeight = FontWeight.Bold,
-                                    textAlign = TextAlign.Center,
-                                    fontSize = 30.sp,
-                                    color = MaterialTheme.colorScheme.primary
+                            Card(
+                                modifier = Modifier
+                                    .padding(horizontal = 16.dp, vertical = 32.dp),
+                            ) {
+                                CameraPreview(controller, modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(550.dp)
                                 )
+                            }
+
+                            Card(
+                                modifier = Modifier
+                                    .padding(horizontal = 16.dp, vertical = 20.dp)
+                                    .height(100.dp)
+                                ,
+
+                                ) {
+                                classifications.forEach {
+                                    Text(
+                                        text = it.name,
+                                        modifier = Modifier
+                                            .fillMaxSize()
+                                            .padding(8.dp)
+                                        ,
+                                        fontFamily = nothingfontfamily,
+                                        fontWeight = FontWeight.Bold,
+                                        textAlign = TextAlign.Center,
+                                        fontSize = 30.sp,
+                                        color = MaterialTheme.colorScheme.primary
+                                    )
+                                }
                             }
                         }
                     }
+
                 }
             }
         }
