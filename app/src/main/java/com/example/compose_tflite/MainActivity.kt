@@ -111,13 +111,13 @@ class MainActivity : ComponentActivity() {
                         }
                     }
 
-                    val navController = rememberNavController()
+                    /*val navController = rememberNavController()*/
 
                     Scaffold(
                         modifier = Modifier.fillMaxSize(),
 
                         bottomBar = {
-                            BottomNavigation(navController = navController)
+                            BottomNavigation(/*navController = navController*/)
                         }
                     ) {
 
@@ -135,7 +135,7 @@ class MainActivity : ComponentActivity() {
                                 fontFamily = spacefamily,
                                 fontWeight = FontWeight.Bold,
                                 textAlign = TextAlign.Center,
-                                fontSize = 30.sp,
+                                fontSize = 34.sp,
                             )
 
                             Card(

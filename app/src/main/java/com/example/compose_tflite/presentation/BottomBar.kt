@@ -27,6 +27,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
@@ -49,21 +50,21 @@ val spacefamily = FontFamily(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BottomNavigation(
-    navController: NavController
+    /*navController: NavController*/
 ){
     val items = listOf(
         BottomNavigationItem(
             title = "Home",
             selectedIcon = Icons.Filled.Home,
-            unselectedIcon = Icons.Filled.Home,
+            unselectedIcon = Icons.Outlined.Home,
             hasNews = false,
         ),
         BottomNavigationItem(
             title = "Scanner",
             selectedIcon = Icons.Filled.DateRange,
-            unselectedIcon = Icons.Filled.DateRange,
+            unselectedIcon = Icons.Outlined.DateRange,
             hasNews = false,
-            /*badgeCount = 0*/
+            badgeCount = 0
         ),
         /*BottomNavigationItem(
             title = "Notifications",
@@ -74,7 +75,7 @@ fun BottomNavigation(
         BottomNavigationItem(
             title = "Settings",
             selectedIcon = Icons.Filled.Settings,
-            unselectedIcon = Icons.Filled.Settings,
+            unselectedIcon = Icons.Outlined.Settings,
             hasNews = false,
         )
     )
@@ -101,7 +102,15 @@ fun BottomNavigation(
                 },
                 alwaysShowLabel = false,
                 icon = {
-                    BadgedBox(
+
+                    Icon(
+                        imageVector = if (index == selectedItemIndex) {
+                            item.selectedIcon
+                        } else item.unselectedIcon,
+                        contentDescription = item.title
+                    )
+
+                    /*BadgedBox(
                         badge = {
                             if (item.badgeCount != null) {
                                 Badge {
@@ -118,7 +127,7 @@ fun BottomNavigation(
                             } else item.unselectedIcon,
                             contentDescription = item.title
                         )
-                    }
+                    }*/
                 },
 
             )
