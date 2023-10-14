@@ -36,6 +36,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -44,6 +47,14 @@ import com.example.compose_tflite.data.TfLiteDiseaseClassifier
 import com.example.compose_tflite.domain.Classification
 import com.example.compose_tflite.presentation.CameraPreview
 import com.example.compose_tflite.presentation.DiseaseImageAnalyzer
+
+val nothingfontfamily = FontFamily(
+    Font(R.font.nothingfont, FontWeight.Normal)
+)
+
+val spacefamily = FontFamily(
+    Font(R.font.spacebold, FontWeight.Bold)
+)
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -98,20 +109,31 @@ class MainActivity : ComponentActivity() {
                             .padding(top = 32.dp),
                     ) {
 
+                        Text(text = "Plant Disease Detector",
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 16.dp)
+                                .wrapContentSize(Alignment.Center),
+                            fontFamily = spacefamily,
+                            fontWeight = FontWeight.Bold,
+                            textAlign = TextAlign.Center,
+                            fontSize = 30.sp,
+                        )
+
                         Card(
                             modifier = Modifier
                                 .padding(horizontal = 16.dp, vertical = 32.dp),
                         ) {
                             CameraPreview(controller, modifier = Modifier
                                 .fillMaxWidth()
-                                .height(500.dp)
+                                .height(550.dp)
                             )
                         }
 
                         Card(
                             modifier = Modifier
-                                .padding(horizontal = 16.dp, vertical = 32.dp)
-                                .height(150.dp)
+                                .padding(horizontal = 16.dp, vertical = 20.dp)
+                                .height(100.dp)
                             ,
 
                         ) {
@@ -120,12 +142,12 @@ class MainActivity : ComponentActivity() {
                                     text = it.name,
                                     modifier = Modifier
                                         .fillMaxSize()
-                                        .background(MaterialTheme.colorScheme.primaryContainer)
                                         .padding(8.dp)
                                     ,
+                                    fontFamily = nothingfontfamily,
+                                    fontWeight = FontWeight.Bold,
                                     textAlign = TextAlign.Center,
-                                    fontSize = 36.sp,
-
+                                    fontSize = 30.sp,
                                     color = MaterialTheme.colorScheme.primary
                                 )
                             }
