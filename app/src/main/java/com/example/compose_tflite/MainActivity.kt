@@ -46,12 +46,17 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.compose_tflite.data.TfLiteDiseaseClassifier
 import com.example.compose_tflite.domain.Classification
 import com.example.compose_tflite.presentation.BottomNavigation
 import com.example.compose_tflite.presentation.CameraPreview
 import com.example.compose_tflite.presentation.DiseaseImageAnalyzer
+import com.example.compose_tflite.presentation.screens.HomeScreen
+import com.example.compose_tflite.presentation.screens.ImageScreen
+import com.example.compose_tflite.presentation.screens.ScannerScreen
 
 val nothingfontfamily = FontFamily(
     Font(R.font.nothingfont, FontWeight.Normal)
@@ -88,87 +93,23 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    var classifications by remember {
-                        mutableStateOf(emptyList<Classification>())
-                    }
-                    val analyzer = remember {
-                        DiseaseImageAnalyzer(
-                            classifier = TfLiteDiseaseClassifier(
-                                context = applicationContext
-                            ),
-                            onResults = {
-                                classifications = it
-                            }
-                        )
-                    }
-                    val controller = remember {
-                        LifecycleCameraController(applicationContext).apply {
-                            setEnabledUseCases(CameraController.IMAGE_ANALYSIS)
-                            setImageAnalysisAnalyzer(
-                                ContextCompat.getMainExecutor(applicationContext),
-                                analyzer
-                            )
-                        }
-                    }
 
-                    /*val navController = rememberNavController()*/
+                    val navController = rememberNavController()
 
                     Scaffold(
-                        modifier = Modifier.fillMaxSize(),
-
                         bottomBar = {
-                            BottomNavigation(/*navController = navController*/)
+                            BottomNavigation(navController = navController)
                         }
                     ) {
-
-                        Column(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .padding(top = 32.dp),
-                        ) {
-
-                            Text(text = "Plant Disease Detector",
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(horizontal = 16.dp)
-                                    .wrapContentSize(Alignment.Center),
-                                fontFamily = spacefamily,
-                                fontWeight = FontWeight.Bold,
-                                textAlign = TextAlign.Center,
-                                fontSize = 34.sp,
-                            )
-
-                            Card(
-                                modifier = Modifier
-                                    .padding(horizontal = 16.dp, vertical = 32.dp),
-                            ) {
-                                CameraPreview(controller, modifier = Modifier
-                                    .fillMaxWidth()
-                                    .height(550.dp)
-                                )
+                        NavHost(navController = navController, startDestination = "home") {
+                            composable("home") {
+                                HomeScreen()
                             }
-
-                            Card(
-                                modifier = Modifier
-                                    .padding(horizontal = 16.dp, vertical = 20.dp)
-                                    .height(100.dp)
-                                ,
-
-                                ) {
-                                classifications.forEach {
-                                    Text(
-                                        text = it.name,
-                                        modifier = Modifier
-                                            .fillMaxSize()
-                                            .padding(8.dp)
-                                        ,
-                                        fontFamily = nothingfontfamily,
-                                        fontWeight = FontWeight.Bold,
-                                        textAlign = TextAlign.Center,
-                                        fontSize = 30.sp,
-                                        color = MaterialTheme.colorScheme.primary
-                                    )
-                                }
+                            composable("scanner") {
+                                ScannerScreen(applicationContext = applicationContext)
+                            }
+                            composable("image") {
+                                ImageScreen()
                             }
                         }
                     }
@@ -177,7 +118,6 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-
     private fun hasCameraPermission(): Boolean {
         return ContextCompat.checkSelfPermission(
             this,

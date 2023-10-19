@@ -50,30 +50,24 @@ val spacefamily = FontFamily(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BottomNavigation(
-    /*navController: NavController*/
+    navController: NavController
 ){
     val items = listOf(
         BottomNavigationItem(
-            title = "Home",
+            title = "home",
             selectedIcon = Icons.Filled.Home,
             unselectedIcon = Icons.Outlined.Home,
             hasNews = false,
         ),
         BottomNavigationItem(
-            title = "Scanner",
+            title = "scanner",
             selectedIcon = Icons.Filled.DateRange,
             unselectedIcon = Icons.Outlined.DateRange,
             hasNews = false,
             badgeCount = 0
         ),
-        /*BottomNavigationItem(
-            title = "Notifications",
-            selectedIcon = Icons.Filled.Notifications,
-            unselectedIcon = Icons.Outlined.Notifications,
-            hasNews = true,
-        ),*/
         BottomNavigationItem(
-            title = "Settings",
+            title = "image",
             selectedIcon = Icons.Filled.Settings,
             unselectedIcon = Icons.Outlined.Settings,
             hasNews = false,
@@ -93,14 +87,13 @@ fun BottomNavigation(
                 selected = selectedItemIndex == index,
                 onClick = {
                     selectedItemIndex = index
-                    /*navController.navigate(item.title)*/
-                    // navController.navigate(item.title)
+
+                    navController.navigate(item.title)
                 },
 
                 label = {
                     Text(text = item.title)
                 },
-                alwaysShowLabel = false,
                 icon = {
 
                     Icon(
@@ -109,25 +102,6 @@ fun BottomNavigation(
                         } else item.unselectedIcon,
                         contentDescription = item.title
                     )
-
-                    /*BadgedBox(
-                        badge = {
-                            if (item.badgeCount != null) {
-                                Badge {
-                                    Text(text = item.badgeCount.toString())
-                                }
-                            } else if (item.hasNews) {
-                                Badge()
-                            }
-                        }
-                    ) {
-                        Icon(
-                            imageVector = if (index == selectedItemIndex) {
-                                item.selectedIcon
-                            } else item.unselectedIcon,
-                            contentDescription = item.title
-                        )
-                    }*/
                 },
 
             )
