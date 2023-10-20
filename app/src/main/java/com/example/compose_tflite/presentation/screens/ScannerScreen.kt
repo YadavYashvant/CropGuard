@@ -143,7 +143,8 @@ fun ScannerScreen(
                     Text(
                         text = it.name,
                         modifier = Modifier
-                            .fillMaxSize()
+                            .fillMaxWidth()
+                            .fillMaxHeight()
                             .padding(8.dp)
                         ,
                         fontFamily = nothingfontfamily,
