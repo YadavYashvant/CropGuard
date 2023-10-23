@@ -62,7 +62,7 @@ fun HomeScreen() {
             onValueChange = onValueChange,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 45.dp),
+                .padding(top = 16.dp),
 
             shape = MaterialTheme.shapes.extraLarge,
             colors = TextFieldDefaults.textFieldColors(

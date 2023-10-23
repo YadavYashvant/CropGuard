@@ -71,10 +71,10 @@ class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        window.setFlags(
+        /*window.setFlags(
             android.view.WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
             android.view.WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
-        )
+        )*/
 
         super.onCreate(savedInstanceState)
 
@@ -101,19 +101,18 @@ class MainActivity : ComponentActivity() {
                             BottomNavigation(navController = navController)
                         }
                     ) {
-                        NavHost(navController = navController, startDestination = "home") {
-                            composable("home") {
+                        NavHost(navController = navController, startDestination = "Home") {
+                            composable("Home") {
                                 HomeScreen()
                             }
-                            composable("scanner") {
+                            composable("Scanner") {
                                 ScannerScreen(applicationContext = applicationContext)
                             }
-                            composable("image") {
+                            composable("Image Scan") {
                                 ImageScreen()
                             }
                         }
                     }
-
                 }
             }
         }

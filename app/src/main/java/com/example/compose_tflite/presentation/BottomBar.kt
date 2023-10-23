@@ -4,11 +4,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.outlined.DateRange
 import androidx.compose.material.icons.outlined.Email
+import androidx.compose.material.icons.outlined.Face
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material.icons.outlined.Settings
@@ -54,22 +56,22 @@ fun BottomNavigation(
 ){
     val items = listOf(
         BottomNavigationItem(
-            title = "home",
+            title = "Home",
             selectedIcon = Icons.Filled.Home,
             unselectedIcon = Icons.Outlined.Home,
             hasNews = false,
         ),
         BottomNavigationItem(
-            title = "scanner",
+            title = "Scanner",
             selectedIcon = Icons.Filled.DateRange,
             unselectedIcon = Icons.Outlined.DateRange,
             hasNews = false,
             badgeCount = 0
         ),
         BottomNavigationItem(
-            title = "image",
-            selectedIcon = Icons.Filled.Settings,
-            unselectedIcon = Icons.Outlined.Settings,
+            title = "Image Scan",
+            selectedIcon = Icons.Filled.Face,
+            unselectedIcon = Icons.Outlined.Face,
             hasNews = false,
         )
     )
@@ -79,7 +81,6 @@ fun BottomNavigation(
 
 
     NavigationBar(
-        modifier = Modifier.padding(bottom = 8.dp),
         contentColor = MaterialTheme.colorScheme.onSurface,
     ) {
         items.forEachIndexed { index, item ->
