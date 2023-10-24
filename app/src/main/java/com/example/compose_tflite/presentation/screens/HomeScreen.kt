@@ -38,6 +38,8 @@ import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.example.compose_tflite.R
 
+const val BASE_URL = "https://poetrydb.org/author,title/"
+
 @OptIn(ExperimentalCoilApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen() {
@@ -136,4 +138,7 @@ fun HomeScreen() {
                 }})
         }
     }
+}
+
+private fun getPoetryData() {
 }
