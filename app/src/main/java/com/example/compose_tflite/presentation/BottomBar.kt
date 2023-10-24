@@ -96,7 +96,6 @@ fun BottomNavigation(
                     Text(text = item.title)
                 },
                 icon = {
-
                     Icon(
                         imageVector = if (index == selectedItemIndex) {
                             item.selectedIcon
