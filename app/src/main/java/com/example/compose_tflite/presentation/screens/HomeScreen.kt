@@ -13,14 +13,18 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -38,23 +42,45 @@ import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.example.compose_tflite.R
 
-const val BASE_URL = "https://poetrydb.org/author,title/"
+/*const val BASE_URL = "https://poetrydb.org/author,title/"*/
 
 @OptIn(ExperimentalCoilApi::class, ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen() {
+fun HomeScreen(/*viewModel: CreditCardViewModel*/) {
 
-    Column (
+    /*val creditCards by viewModel.creditCards.observeAsState(emptyList())
+
+    LaunchedEffect(Unit) {
+        viewModel.fetchCreditCards()
+    }
+
+    Column {
+        if(creditCards.isEmpty()) {
+            Text(text = "Loading....")
+        }
+        else {
+            LazyColumn {
+                items(creditCards) { creditCard->
+                    Text(text = creditCard.bank)
+                    Text(text = creditCard.number)
+                    Text(text = creditCard.cvv)
+                    Divider()
+                }
+            }
+        }
+    }
+*/
+    /*Column (
         modifier = Modifier
             .padding(horizontal = 16.dp)
     ) {
-        /*Text(text = "LeafGuard",
+        *//*Text(text = "LeafGuard",
             fontSize = 48.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
                 .padding(16.dp)
-        )*/
+        )*//*
 
         var value by remember { mutableStateOf("") }
         val onValueChange: (String) -> Unit = {value = it}
@@ -103,7 +129,7 @@ fun HomeScreen() {
                             .fillMaxWidth()
                             .padding(16.dp)
                     ) {
-                        /*Text(
+                        *//*Text(
                             text = "LeafGuard",
                             fontSize = 24.sp,
                             fontWeight = FontWeight.Bold,
@@ -111,7 +137,7 @@ fun HomeScreen() {
                                 .align(Alignment.CenterHorizontally)
                                 .padding(16.dp)
                         )
-                        Spacer(modifier = Modifier.height(16.dp))*/
+                        Spacer(modifier = Modifier.height(16.dp))*//*
                         Image(
                             painter = rememberImagePainter(
                                 data = R.drawable.leaves,
@@ -137,8 +163,5 @@ fun HomeScreen() {
                     }
                 }})
         }
-    }
-}
-
-private fun getPoetryData() {
+    }*/
 }

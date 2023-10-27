@@ -17,6 +17,7 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.camera.view.CameraController
 import androidx.camera.view.LifecycleCameraController
 import androidx.compose.foundation.background
@@ -67,6 +68,8 @@ val spacefamily = FontFamily(
 )
 
 class MainActivity : ComponentActivity() {
+
+    /*private val viewModel: CreditCardViewModel by viewModels()*/
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -103,7 +106,7 @@ class MainActivity : ComponentActivity() {
                     ) {
                         NavHost(navController = navController, startDestination = "Home") {
                             composable("Home") {
-                                HomeScreen()
+                                HomeScreen(/*viewModel*/)
                             }
                             composable("Scanner") {
                                 ScannerScreen(applicationContext = applicationContext)
