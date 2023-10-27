@@ -1,133 +1,26 @@
 package com.example.compose_tflite.presentation.screens
 
-import android.net.Uri
-import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Card
-import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import coil.annotation.ExperimentalCoilApi
-import coil.compose.rememberImagePainter
-import com.example.compose_tflite.R
 
 /*const val BASE_URL = "https://poetrydb.org/author,title/"*/
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Surface
-import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.dp
-import coil.compose.rememberImagePainter
-import coil.size.Scale
-import coil.transform.CircleCropTransformation
+import androidx.compose.foundation.lazy.itemsIndexed
 import com.example.compose_tflite.plantsApi_feature.model.Movie
+import com.example.compose_tflite.plantsApi_feature.view.MovieItem
+import com.example.compose_tflite.plantsApi_feature.viewModel.MovieViewModel
+import com.example.compose_tflite.ui.theme.ComposetfliteTheme
 
 @OptIn(ExperimentalCoilApi::class, ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(/*viewModel: CreditCardViewModel*/) {
+fun HomeScreen(movieViewModel: MovieViewModel) {
 
-    @Composable
-    fun MovieItem(movie: Movie) {
-        Card(
-            modifier = Modifier
-                .padding(8.dp, 4.dp)
-                .fillMaxWidth()
-                .height(110.dp), shape = RoundedCornerShape(8.dp), /*elevation = 4.dp*/
-        ) {
-            Surface() {
-
-                Row(
-                    Modifier
-                        .padding(4.dp)
-                        .fillMaxSize()
-                ) {
-
-                    Image(
-                        painter = rememberImagePainter(
-                            data = movie.imageUrl,
-
-                            builder = {
-                                scale(Scale.FILL)
-                                placeholder(coil.compose.base.R.drawable.notification_action_background)
-                                transformations(CircleCropTransformation())
-
-                            }
-                        ),
-                        contentDescription = movie.desc,
-                        modifier = Modifier
-                            .fillMaxHeight()
-                            .weight(0.2f)
-                    )
+    MovieList(movieList = movieViewModel.movieListResponse)
+    movieViewModel.getMovieList()
 
 
-                    Column(
-                        verticalArrangement = Arrangement.Center,
-                        modifier = Modifier
-                            .padding(4.dp)
-                            .fillMaxHeight()
-                            .weight(0.8f)
-                    ) {
-                        Text(
-                            text = movie.name,
-                            style = MaterialTheme.typography.displayLarge,
-                            fontWeight = FontWeight.Bold
-                        )
-                        Text(
-                            text = movie.category,
-                            style = MaterialTheme.typography.displayMedium,
-                            modifier = Modifier
-                                .background(
-                                    Color.LightGray
-                                )
-                                .padding(4.dp)
-                        )
-                        Text(
-                            text = movie.desc,
-                            style = MaterialTheme.typography.bodySmall,
-                            maxLines = 2,
-                            overflow = TextOverflow.Ellipsis
-                        )
-
-                    }
-                }
-            }
-        }
-
-    }
 
     /*Column (
         modifier = Modifier
@@ -223,4 +116,28 @@ fun HomeScreen(/*viewModel: CreditCardViewModel*/) {
                 }})
         }
     }*/
+}
+
+@Composable
+fun MovieList(movieList: List<Movie>) {
+    LazyColumn{
+        itemsIndexed(items = movieList) { index, movie ->
+            MovieItem(movie = movie)
+        }
+    }
+}
+
+@Composable
+fun DefaultPreview() {
+    ComposetfliteTheme {
+        val movie = Movie(
+            "Coco",
+            "https://howtodoandroid.com/images/coco.jpg",
+            "Coco is a 2017 American 3D computer-animated musical fantasy adventure film produced by Pixar",
+            "Latest"
+        )
+
+        MovieItem(movie = movie )
+
+    }
 }

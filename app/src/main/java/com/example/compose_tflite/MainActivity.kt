@@ -6,55 +6,25 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.app.ActivityCompat
 import com.example.compose_tflite.ui.theme.ComposetfliteTheme
 
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
-import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.camera.view.CameraController
-import androidx.camera.view.LifecycleCameraController
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.compose_tflite.data.TfLiteDiseaseClassifier
-import com.example.compose_tflite.domain.Classification
+import com.example.compose_tflite.plantsApi_feature.viewModel.MovieViewModel
 import com.example.compose_tflite.presentation.BottomNavigation
-import com.example.compose_tflite.presentation.CameraPreview
-import com.example.compose_tflite.presentation.DiseaseImageAnalyzer
 import com.example.compose_tflite.presentation.screens.HomeScreen
 import com.example.compose_tflite.presentation.screens.ImageScreen
 import com.example.compose_tflite.presentation.screens.ScannerScreen
@@ -70,6 +40,7 @@ val spacefamily = FontFamily(
 class MainActivity : ComponentActivity() {
 
     /*private val viewModel: CreditCardViewModel by viewModels()*/
+    val movieViewModel by viewModels<MovieViewModel>()
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -104,9 +75,10 @@ class MainActivity : ComponentActivity() {
                             BottomNavigation(navController = navController)
                         }
                     ) {
+
                         NavHost(navController = navController, startDestination = "Home") {
                             composable("Home") {
-                                HomeScreen(/*viewModel*/)
+                                HomeScreen(movieViewModel)
                             }
                             composable("Scanner") {
                                 ScannerScreen(applicationContext = applicationContext)
@@ -126,4 +98,30 @@ class MainActivity : ComponentActivity() {
             Manifest.permission.CAMERA
         ) == PackageManager.PERMISSION_GRANTED
     }
+
+    /*@Composable
+    fun MovieList(movieList: List<Movie>) {
+        LazyColumn{
+            itemsIndexed(items = movieList) { index, movie ->
+                MovieItem(movie = movie)
+            }
+        }
+    }
+
+    @Preview(showBackground = true)
+    @Composable
+    fun DefaultPreview() {
+        ComposetfliteTheme {
+            val movie = Movie(
+                "Coco",
+                "https://howtodoandroid.com/images/coco.jpg",
+                "Coco is a 2017 American 3D computer-animated musical fantasy adventure film produced by Pixar",
+                "Latest"
+            )
+
+            MovieItem(movie = movie )
+
+        }
+    }*/
+
 }
