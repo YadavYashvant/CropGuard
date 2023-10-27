@@ -44,32 +44,91 @@ import com.example.compose_tflite.R
 
 /*const val BASE_URL = "https://poetrydb.org/author,title/"*/
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Surface
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.dp
+import coil.compose.rememberImagePainter
+import coil.size.Scale
+import coil.transform.CircleCropTransformation
+import com.example.compose_tflite.plantsApi_feature.model.Movie
+
 @OptIn(ExperimentalCoilApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(/*viewModel: CreditCardViewModel*/) {
 
-    /*val creditCards by viewModel.creditCards.observeAsState(emptyList())
+    @Composable
+    fun MovieItem(movie: Movie) {
+        Card(
+            modifier = Modifier
+                .padding(8.dp, 4.dp)
+                .fillMaxWidth()
+                .height(110.dp), shape = RoundedCornerShape(8.dp), /*elevation = 4.dp*/
+        ) {
+            Surface() {
 
-    LaunchedEffect(Unit) {
-        viewModel.fetchCreditCards()
-    }
+                Row(
+                    Modifier
+                        .padding(4.dp)
+                        .fillMaxSize()
+                ) {
 
-    Column {
-        if(creditCards.isEmpty()) {
-            Text(text = "Loading....")
-        }
-        else {
-            LazyColumn {
-                items(creditCards) { creditCard->
-                    Text(text = creditCard.bank)
-                    Text(text = creditCard.number)
-                    Text(text = creditCard.cvv)
-                    Divider()
+                    Image(
+                        painter = rememberImagePainter(
+                            data = movie.imageUrl,
+
+                            builder = {
+                                scale(Scale.FILL)
+                                placeholder(coil.compose.base.R.drawable.notification_action_background)
+                                transformations(CircleCropTransformation())
+
+                            }
+                        ),
+                        contentDescription = movie.desc,
+                        modifier = Modifier
+                            .fillMaxHeight()
+                            .weight(0.2f)
+                    )
+
+
+                    Column(
+                        verticalArrangement = Arrangement.Center,
+                        modifier = Modifier
+                            .padding(4.dp)
+                            .fillMaxHeight()
+                            .weight(0.8f)
+                    ) {
+                        Text(
+                            text = movie.name,
+                            style = MaterialTheme.typography.displayLarge,
+                            fontWeight = FontWeight.Bold
+                        )
+                        Text(
+                            text = movie.category,
+                            style = MaterialTheme.typography.displayMedium,
+                            modifier = Modifier
+                                .background(
+                                    Color.LightGray
+                                )
+                                .padding(4.dp)
+                        )
+                        Text(
+                            text = movie.desc,
+                            style = MaterialTheme.typography.bodySmall,
+                            maxLines = 2,
+                            overflow = TextOverflow.Ellipsis
+                        )
+
+                    }
                 }
             }
         }
+
     }
-*/
+
     /*Column (
         modifier = Modifier
             .padding(horizontal = 16.dp)
