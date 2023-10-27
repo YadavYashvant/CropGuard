@@ -2,6 +2,7 @@ package com.example.compose_tflite.plantsApi_feature.view
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -23,27 +24,30 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import coil.annotation.ExperimentalCoilApi
 import coil.compose.base.R
 import coil.compose.rememberImagePainter
 import coil.size.Scale
 import coil.transform.CircleCropTransformation
 import com.example.compose_tflite.plantsApi_feature.model.Movie
 
+@OptIn(ExperimentalCoilApi::class)
 @Composable
 fun MovieItem(movie: Movie) {
     Card(
         modifier = Modifier
             .padding(8.dp, 4.dp)
             .fillMaxWidth()
-            .height(200.dp), shape = RoundedCornerShape(8.dp), /*elevation = 4.dp*/
+            .height(200.dp), shape = RoundedCornerShape(16.dp), /*elevation = 4.dp*/
     ) {
         Surface() {
             Card(
                 modifier = Modifier
                     .padding(horizontal = 16.dp, vertical = 8.dp)
                     .defaultMinSize(minHeight = 200.dp)
-                    .fillMaxSize(),
-                shape = RoundedCornerShape(8.dp),
+                    .fillMaxSize()
+                    .clickable {  },
+                shape = RoundedCornerShape(16.dp),
             ) {
                 Row(
                     Modifier
@@ -72,14 +76,15 @@ fun MovieItem(movie: Movie) {
                     Column(
                         verticalArrangement = Arrangement.Center,
                         modifier = Modifier
-                            .padding(4.dp)
+                            .padding(horizontal = 5.dp, vertical = 4.dp)
                             .fillMaxHeight()
                             .weight(0.8f)
                     ) {
                         Text(
                             text = movie.name,
                             style = MaterialTheme.typography.bodyLarge,
-                            fontWeight = FontWeight.Bold
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.padding(bottom = 4.dp)
                         )
                         Text(
                             text = movie.category,
@@ -89,12 +94,13 @@ fun MovieItem(movie: Movie) {
                                     Color.LightGray,
                                     shape = RoundedCornerShape(5.dp)
                                 )
-                                .padding(4.dp)
+                                .padding(horizontal = 4.dp, vertical = 8.dp)
                         )
                         Text(
                             text = movie.desc,
                             style = MaterialTheme.typography.bodySmall,
-                            overflow = TextOverflow.Ellipsis
+                            overflow = TextOverflow.Ellipsis,
+                            modifier = Modifier.padding(top = 10.dp)
                         )
 
                     }
