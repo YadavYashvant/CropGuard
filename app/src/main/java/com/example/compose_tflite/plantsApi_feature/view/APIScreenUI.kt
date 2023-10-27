@@ -20,6 +20,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -40,13 +41,15 @@ fun MovieItem(movie: Movie) {
             .fillMaxWidth()
             .height(200.dp), shape = RoundedCornerShape(16.dp), /*elevation = 4.dp*/
     ) {
-        Surface() {
+        Surface {
+
+
             Card(
                 modifier = Modifier
                     .padding(horizontal = 16.dp, vertical = 8.dp)
                     .defaultMinSize(minHeight = 200.dp)
                     .fillMaxSize()
-                    .clickable {  },
+                    .clickable { },
                 shape = RoundedCornerShape(16.dp),
             ) {
                 Row(
@@ -63,13 +66,14 @@ fun MovieItem(movie: Movie) {
                                 scale(Scale.FILL)
                                 placeholder(R.drawable.notification_action_background)
                                 transformations(CircleCropTransformation())
-
                             }
                         ),
                         contentDescription = movie.desc,
                         modifier = Modifier
                             .fillMaxHeight()
                             .weight(0.2f)
+                            .padding(4.dp)
+
                     )
 
 
@@ -92,9 +96,9 @@ fun MovieItem(movie: Movie) {
                             modifier = Modifier
                                 .background(
                                     Color.LightGray,
-                                    shape = RoundedCornerShape(5.dp)
+                                    shape = RoundedCornerShape(16.dp)
                                 )
-                                .padding(horizontal = 4.dp, vertical = 8.dp)
+                                .padding(horizontal = 8.dp, vertical = 8.dp)
                         )
                         Text(
                             text = movie.desc,

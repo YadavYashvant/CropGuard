@@ -60,7 +60,7 @@ fun ImageScreen() {
             color = MaterialTheme.colorScheme.onBackground,
         )
 
-        Card(
+        OutlinedCard(
 
             modifier = Modifier
                 .fillMaxWidth()
@@ -84,7 +84,7 @@ fun ImageScreen() {
                 imageUri1.value
             }
             else {
-                R.drawable.plantbottombar
+                R.drawable.gallery_img
             }
         )
 
@@ -96,8 +96,7 @@ fun ImageScreen() {
             }
         }
 
-        OutlinedCard(
-
+        Card(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp, vertical = 32.dp)
@@ -108,8 +107,7 @@ fun ImageScreen() {
                 contentDescription = "Leaves",
                 modifier = Modifier
                     .fillMaxWidth()
-                    .fillMaxHeight()
-                    .clickable { launcher1.launch("image/*") },
+                    .fillMaxHeight(),
                 contentScale = ContentScale.Crop
             )
         }
