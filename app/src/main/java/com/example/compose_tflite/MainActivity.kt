@@ -84,7 +84,7 @@ class MainActivity : ComponentActivity() {
                                 ScannerScreen(applicationContext = applicationContext)
                             }
                             composable("Image Scan") {
-                                ImageScreen()
+                                ImageScreen(applicationContext = applicationContext)
                             }
                         }
                     }

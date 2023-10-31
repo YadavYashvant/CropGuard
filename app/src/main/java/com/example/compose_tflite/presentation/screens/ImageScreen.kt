@@ -1,5 +1,6 @@
 package com.example.compose_tflite.presentation.screens
 
+import android.content.Context
 import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -16,8 +17,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
@@ -25,11 +29,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.example.compose_tflite.R
+import com.example.compose_tflite.data.TfLiteDiseaseClassifier
+import com.example.compose_tflite.domain.Classification
+import com.example.compose_tflite.presentation.DiseaseImageAnalyzer
 import java.time.format.TextStyle
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ImageScreen() {
+fun ImageScreen(applicationContext: Context) {
 
      val imageUri = rememberSaveable { mutableStateOf("") }
      val painter = rememberImagePainter(
@@ -48,6 +55,21 @@ fun ImageScreen() {
                 imageUri.value = it.toString()
             }
         }
+
+    var classifications by remember {
+        mutableStateOf(emptyList<Classification>())
+    }
+
+    val analyzer = remember {
+        DiseaseImageAnalyzer(
+            classifier = TfLiteDiseaseClassifier(
+                context = applicationContext
+            ),
+            onResults = {
+                classifications = it
+            }
+        )
+    }
 
     Column {
         Text(text = "Choose an image to classify",
