@@ -31,6 +31,8 @@ import coil.compose.rememberImagePainter
 import coil.size.Scale
 import coil.transform.CircleCropTransformation
 import com.example.compose_tflite.plantsApi_feature.model.Movie
+import com.example.compose_tflite.plantsApi_feature.model.expTrefle.Plant
+import com.example.compose_tflite.plantsApi_feature.model.expTrefle.PlantData
 
 @OptIn(ExperimentalCoilApi::class)
 @Composable
@@ -57,7 +59,6 @@ fun MovieItem(movie: Movie) {
                         .padding(4.dp)
                         .fillMaxSize()
                 ) {
-
                     Image(
                         painter = rememberImagePainter(
                             data = movie.imageUrl,
@@ -75,7 +76,6 @@ fun MovieItem(movie: Movie) {
                             .padding(4.dp)
 
                     )
-
 
                     Column(
                         verticalArrangement = Arrangement.Center,
@@ -106,7 +106,6 @@ fun MovieItem(movie: Movie) {
                             overflow = TextOverflow.Ellipsis,
                             modifier = Modifier.padding(top = 10.dp)
                         )
-
                     }
                 }
             }

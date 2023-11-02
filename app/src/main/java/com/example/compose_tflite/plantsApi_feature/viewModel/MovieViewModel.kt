@@ -4,6 +4,8 @@ import androidx.compose.runtime.*
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.compose_tflite.plantsApi_feature.model.Movie
+import com.example.compose_tflite.plantsApi_feature.model.expTrefle.Plant
+import com.example.compose_tflite.plantsApi_feature.model.expTrefle.PlantData
 import com.example.compose_tflite.plantsApi_feature.network.ApiService
 import kotlinx.coroutines.launch
 
