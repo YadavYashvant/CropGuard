@@ -99,5 +99,9 @@ dependencies {
     implementation ("io.coil-kt:coil-compose:1.3.2")
 
     // Coroutines for asynchronous programming
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1")
+
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
+    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.2.0")
 }

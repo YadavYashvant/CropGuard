@@ -136,34 +136,6 @@ fun MovieList(movieList: List<Movie>) {
     }
 }
 
-/*@Preview
-@Composable
-fun DefaultPreview() {
-    ComposetfliteTheme {
-        val movie = PlantData(
-            "Coco",
-            "",
-            "Tulsi",
-            "Coco is a 2017 American 3D computer-animated musical fantasy adventure film produced by Pixar",
-            "Latest",
-            "",
-            25,
-            100,
-            "https://howtodoandroid.com/images/coco.jpg",
-            null,
-            "",
-            "Hermosa",
-            "Cocos nucifera",
-            "True",
-            null,
-            1600,
-        )
-
-        MovieItem(plant = movie)
-
-    }
-}*/
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FilterChipHome(
