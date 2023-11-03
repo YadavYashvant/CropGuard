@@ -131,7 +131,8 @@ fun MovieList(movieList: List<Movie>) {
             }
         }
         itemsIndexed(items = movieList) { index, movie ->
-            MovieItem(movie = movie)
+            /*MovieItem(movie = movie)*/
+            DummyItem()
         }
     }
 }

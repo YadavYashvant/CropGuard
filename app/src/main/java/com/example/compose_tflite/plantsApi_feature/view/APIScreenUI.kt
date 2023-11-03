@@ -111,5 +111,4 @@ fun MovieItem(movie: Movie) {
             }
         }
     }
-
 }
