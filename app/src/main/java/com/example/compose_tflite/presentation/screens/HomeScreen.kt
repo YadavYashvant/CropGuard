@@ -54,10 +54,8 @@ import com.example.compose_tflite.ui.theme.ComposetfliteTheme
 @OptIn(ExperimentalCoilApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(movieViewModel: MovieViewModel) {
-
     MovieList(movieList = movieViewModel.movieListResponse)
     movieViewModel.getMovieList()
-
 }
 
 @OptIn(ExperimentalMaterial3Api::class)

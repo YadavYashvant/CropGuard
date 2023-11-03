@@ -9,7 +9,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.core.app.ActivityCompat
 import com.example.compose_tflite.ui.theme.ComposetfliteTheme
-
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
