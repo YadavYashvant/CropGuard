@@ -11,7 +11,7 @@ Using crop disease detection model to detect diseases in crops with the help of 
 
 ## Features
 
-- Camera detection
+- Detection using camera
 - ML models
 - Minimal material UI
 
