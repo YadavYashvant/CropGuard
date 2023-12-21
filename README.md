@@ -4,9 +4,9 @@
 Using crop disease detection model to detect diseases in crops with the help of camera.
 ## Tech Stack
 
-**UI :** Jetpack compose, Kotlin, Material3
+- Jetpack compose, Kotlin, Material3
 
-**Server:** Tensorflow, Machine learning, CameraX
+- Tensorflow, Machine learning, CameraX
 
 
 ## Features
