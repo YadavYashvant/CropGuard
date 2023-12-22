@@ -16,8 +16,7 @@ Using crop disease detection model to detect diseases in crops with the help of 
 - Minimal material UI
 
 ## Authors
-
-- Yashvant Yadav
+- [Yashvant Yadav](https://www.github.com/YadavYashvant)
 
 ## Screenshots
 
